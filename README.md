@@ -21,7 +21,9 @@ export default {
         'data-redirecturi': 'REDIRECTURI',
         'charset': 'utf-8'
       }
-    )
+    ).then(() => {
+      // do your logic
+    })
   }
 }
 </script>
