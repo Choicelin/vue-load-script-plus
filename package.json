@@ -1,0 +1,19 @@
+{
+  "name": "vue-load-script-plus",
+  "version": "1.0.0",
+  "description": "A Vue plugin for injecting remote scripts and it can set script element's attributes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Choicelin/vue-load-script-plus.git"
+  },
+  "author": "Choicelin <413807584@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Choicelin/vue-load-script-plus/issues"
+  },
+  "homepage": "https://github.com/Choicelin/vue-load-script-plus#readme"
+}
