@@ -10,7 +10,10 @@ Vue.use(VueLoadScript)
 ```
 
 ```vue
-// someComponents.vue
+// someComponent.vue
+<template>
+<button @click="removeScriptTag"></button>
+</template>
 <script>
 export default {
   mounted () {
@@ -24,6 +27,12 @@ export default {
     ).then(() => {
       // do your logic
     })
+  },
+  methods: {
+    // remove script tag from head
+    removeScriptTag () {
+      this.$unloadScript('http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js')
+    }
   }
 }
 </script>
