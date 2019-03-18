@@ -17,6 +17,7 @@ Vue.use(VueLoadScript)
 <script>
 export default {
   mounted () {
+    // load your script tag, if you don't need to set attributes on script tag,you can stop passing the second parameter
     this.$loadScript(
       'http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js',
       {
