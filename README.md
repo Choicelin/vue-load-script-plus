@@ -58,8 +58,8 @@ export default {
 // or 301 or etc.
 
 const arr = [
-  'https://cdn.bootcss.com/jquery/3.3.1/core.js', // first loaded
-  'https://cdn.bootcss.com/jquery/3.3.1/jquery.js' // then second loaded
+  'https://cdn.bootcss.com/jquery/3.3.1/core.js', // first script loaded
+  'https://cdn.bootcss.com/jquery/3.3.1/jquery.js' // then second script loaded
   ]
 this.$unBlockloadAllScripts(arr)
     .then(() => {
