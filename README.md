@@ -58,15 +58,16 @@ export default {
 // or 301 or etc.
 
 const arr = [
-  'https://cdn.bootcss.com/jquery/3.3.1/core.js', 
-  'https://cdn.bootcss.com/jquery/3.3.1/jquery.js'
+  'https://cdn.bootcss.com/jquery/3.3.1/core.js', // first loaded
+  'https://cdn.bootcss.com/jquery/3.3.1/jquery.js' // then second loaded
   ]
 this.$unBlockloadAllScripts(arr)
     .then(() => {
-      // do your logic
+      // after all loaded, do your logic  
     })
     .catch(() => {
-      // do your logic
+      // after all loaded, do your logic
     })
 ```
 > I suggest you to write your logic both in the then and catch callback, to ensure that your own logic are excuted. 
+The script tags will be loaded in the order of it's order in the array.
