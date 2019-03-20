@@ -33,6 +33,25 @@ const LoadScript = {
       })
     }
 
+    Vue.unBlockloadAllScripts = Vue.prototype.unBlockloadAllScripts = function (scriptsArray) {
+      return new Promise(function (resolve) {
+        const promise = scriptsArray.reduce((promise, current) => {
+          return promise.then(() => {
+            return Vue.loadScript(current)
+          }).catch(() => {
+            return Vue.loadScript(current)
+          })
+        }, Vue.loadScript(scriptsArray[0]))
+        promise
+          .then(() => {
+          resolve()
+          })
+          .catch(() => {
+            resolve()
+          })
+      })
+    }
+
     Vue.unloadScript = Vue.prototype.$unloadScript = function (src) { // eslint-disable-line no-param-reassign
       return new Promise(function (resolve, reject) {
         const el = document.querySelector('script[src="' + src + '"]')
