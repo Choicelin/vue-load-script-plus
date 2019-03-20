@@ -33,7 +33,7 @@ const LoadScript = {
       })
     }
 
-    Vue.unBlockloadAllScripts = Vue.prototype.unBlockloadAllScripts = function (scriptsArray) {
+    Vue.unBlockloadAllScripts = Vue.prototype.$unBlockloadAllScripts = function (scriptsArray) {
       return new Promise(function (resolve) {
         const promise = scriptsArray.reduce((promise, current) => {
           return promise.then(() => {
