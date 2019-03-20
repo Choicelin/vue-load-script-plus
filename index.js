@@ -19,17 +19,13 @@ const LoadScript = {
         el.type = 'text/javascript'
         el.async = true
         el.src = src
-        if (attrObject != null &&
-          !Array.isArray(attrObject) &&
-          typeof attrObject !== 'string' &&
-          typeof attrObject !== 'number'
-        ) {
+        if (Object.prototype.toString.call(attrObject) === '[object Object]') {
           Object.keys(attrObject).forEach(key => {
             el.setAttribute(key, attrObject[key])
           })
         }
 
-          el.addEventListener('load', resolve)
+        el.addEventListener('load', resolve)
         el.addEventListener('error', reject)
         el.addEventListener('abort', reject)
 
