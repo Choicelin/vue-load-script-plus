@@ -1,6 +1,6 @@
 {
   "name": "vue-load-script-plus",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A Vue plugin for injecting remote scripts and it can set script element's attributes",
   "main": "index.js",
   "scripts": {

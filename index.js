@@ -34,7 +34,7 @@ const LoadScript = {
     }
 
     Vue.unBlockloadAllScripts = Vue.prototype.$unBlockloadAllScripts = function (scriptsArray) {
-      return new Promise(function (resolve) {
+      return new Promise(function (resolve, reject) {
         const promise = scriptsArray.reduce((promise, current) => {
           return promise.then(() => {
             return Vue.loadScript(current)
@@ -44,10 +44,10 @@ const LoadScript = {
         }, Vue.loadScript(scriptsArray[0]))
         promise
           .then(() => {
-          resolve()
+            resolve()
           })
           .catch(() => {
-            resolve()
+            reject()
           })
       })
     }
