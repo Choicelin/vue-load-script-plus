@@ -54,7 +54,7 @@ export default {
 // are in a status of 500 or 301 etc.You can use my unblocking method to 
 // load all script tags.This method will load all scripts, and resolve or 
 // reject after the last one are loaded.None of the scripts would be 
-// blocked, all of them would be loaded whether they in a status of 500 
+// blocked, all of them would be loaded whether they are in a status of 500 
 // or 301 or etc.
 
 const arr = [
