@@ -17,7 +17,9 @@ Vue.use(VueLoadScript)
 <script>
 export default {
   mounted () {
-    // load your script tag, if you don't need to set attributes on script tag,you can stop passing the second parameter
+    // load your script tag, if you 
+    // don't need to set attributes on script tag.
+    // you can stop passing the second parameter
     this.$loadScript(
       'http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js',
       {
@@ -38,7 +40,13 @@ export default {
 }
 </script>
 // generated script tag would be
-// <script type="text/javascript" async="" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="APPID" data-redirecturi="REDIRECTURI" charset="utf-8"></script>
+// <script 
+    type="text/javascript"
+    async="" 
+    src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" 
+    data-appid="APPID" 
+    data-redirecturi="REDIRECTURI" 
+    charset="utf-8"></script>
 ```
 
 ```javascript 1.6
@@ -49,7 +57,10 @@ export default {
 // blocked, all of them would be loaded whether they in a status of 500 
 // or 301 or etc.
 
-const arr = ['https://cdn.bootcss.com/jquery/3.3.1/core.js', 'https://cdn.bootcss.com/jquery/3.3.1/jquery.js']
+const arr = [
+  'https://cdn.bootcss.com/jquery/3.3.1/core.js', 
+  'https://cdn.bootcss.com/jquery/3.3.1/jquery.js'
+  ]
 this.$unBlockloadAllScripts(arr)
     .then(() => {
       // do your logic
