@@ -70,4 +70,4 @@ this.$unBlockloadAllScripts(arr)
     })
 ```
 > I suggest you to write your logic both in the then and catch callback, to ensure that your own logic are excuted. 
-The script tags will be loaded in the order of it's order in the array.
+The script tags will be loaded in the order of its order in the array.
