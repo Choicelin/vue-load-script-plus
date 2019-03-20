@@ -42,10 +42,12 @@ export default {
 ```
 
 ```javascript 1.6
-// if you wanna load multiple script tags and don't mind that some of them are in a status of 500 or 301 etc.
-// You can use unblocking methods to load all script tags.This method will load all scripts, 
-// and resolve or reject after the last one are loaded.None of the scripts would be blocked, 
-// all of them would be loaded whether they in a status of 500 or 301 or etc.
+// if you wanna load multiple script tags and don't mind that some of them 
+// are in a status of 500 or 301 etc.You can use my unblocking method to 
+// load all script tags.This method will load all scripts, and resolve or 
+// reject after the last one are loaded.None of the scripts would be 
+// blocked, all of them would be loaded whether they in a status of 500 
+// or 301 or etc.
 
 const arr = ['https://cdn.bootcss.com/jquery/3.3.1/core.js', 'https://cdn.bootcss.com/jquery/3.3.1/jquery.js']
 this.$unBlockloadAllScripts(arr)
