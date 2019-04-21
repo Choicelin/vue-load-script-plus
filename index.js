@@ -67,6 +67,32 @@ const LoadScript = {
         resolve()
       })
     }
+    
+    Vue.loadAfterUnloadScript = Vue.prototype.$loadAfterUnloadScript = function (src, attrObject) {
+      return new Promise(function (resolve, reject) {
+        const loadedScript = document.querySelector('script[src="' + src + '"]')
+        if (loadedScript) {
+          document.head.removeChild(loadedScript)
+        }
+
+        const el = document.createElement('script')
+
+        el.type = 'text/javascript'
+        el.async = true
+        el.src = src
+        if (Object.prototype.toString.call(attrObject) === '[object Object]') {
+          Object.keys(attrObject).forEach(key => {
+            el.setAttribute(key, attrObject[key])
+          })
+        }
+
+        el.addEventListener('load', resolve)
+        el.addEventListener('error', reject)
+        el.addEventListener('abort', reject)
+
+        document.head.appendChild(el)
+      })
+    }
   },
 }
 
