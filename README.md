@@ -71,3 +71,21 @@ this.$unBlockloadAllScripts(arr)
 ```
 > I suggest you to write your logic both in the then and catch callback, to ensure that your own logic are excuted. 
 The script tags will be loaded in the order of its order in the array.
+
+### loadAfterUnloadScript
+this method is now added for automatically unload the
+script which is loaded.And after that operation, it will perform
+like the original loadScript method.
+
+``` javascript 1.6
+    this.$loadAfterUnloadScript(
+      'http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js',
+      {
+        'data-appid': 'APPID',
+        'data-redirecturi': 'REDIRECTURI',
+        'charset': 'utf-8'
+      }
+    ).then(() => {
+      // do your logic
+    })
+```

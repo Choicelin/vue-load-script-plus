@@ -67,7 +67,6 @@ const LoadScript = {
         resolve()
       })
     }
-
     Vue.loadAfterUnloadScript = Vue.prototype.$loadAfterUnloadScript = function (src, attrObject) {
       return new Promise(function (resolve, reject) {
         const loadedScript = document.querySelector('script[src="' + src + '"]')
