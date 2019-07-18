@@ -1,3 +1,5 @@
+## Inspired by vue-plugin-load-script
+This project is inspired by vue-plugin-load-script, add some new features on it,if you don't need the new features you could use vue-plugin-load-script.
 ## Install
 > npm install vue-load-script-plus --save
 
