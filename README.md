@@ -3,6 +3,13 @@ This project is inspired by vue-plugin-load-script, add some new features on it,
 ## Install
 > npm install vue-load-script-plus --save
 
+## API list
+
+- loadScript
+- unBlockloadAllScripts
+- unloadScript
+- loadAfterUnloadScript
+
 ## Usage
 ```javascript 1.6
 // main.js
@@ -10,7 +17,7 @@ import Vue from 'vue'
 import VueLoadScript from 'vue-load-script-plus'
 Vue.use(VueLoadScript)
 ```
-
+### $loadScript with addtional feature
 ```vue
 // someComponent.vue
 <template>
@@ -50,14 +57,10 @@ export default {
     data-redirecturi="REDIRECTURI" 
     charset="utf-8"></script>
 ```
-
+## New Feature
+### $unBlockloadAllScripts
+It will load an array of scripts, all of the scripts will be loaded,no matter some of them was 404 or 301 
 ```javascript 1.6
-// if you wanna load multiple script tags and don't mind that some of them 
-// are in a status of 500 or 301 etc.You can use my unblocking method to 
-// load all script tags.This method will load all scripts, and resolve or 
-// reject after the last one are loaded.None of the scripts would be 
-// blocked, all of them would be loaded whether they are in a status of 500 
-// or 301 or etc.
 
 const arr = [
   'https://cdn.bootcss.com/jquery/3.3.1/core.js', // first script loaded
@@ -75,9 +78,7 @@ this.$unBlockloadAllScripts(arr)
 The script tags will be loaded in the order of its order in the array.
 
 ### loadAfterUnloadScript
-this method is now added for automatically unload the
-script which is loaded.And after that operation, it will perform
-like the original loadScript method.
+It will load script after it was unloaded
 
 ``` javascript 1.6
     this.$loadAfterUnloadScript(
