@@ -10,6 +10,42 @@ This project is inspired by vue-plugin-load-script, add some new features on it,
 - unloadScript
 - loadAfterUnloadScript
 
+## 1.6.6 version new feature 
+> npm install vue-load-script-plus@1.6.6 -S
+
+1. add the third param which is a boolean value to load script before body tag closes.
+these functions add the third param: $loadScript,$unloadScript,loadAfterUnloadScript
+2. add a new function that can unblockly load script array with attributes,also they can be load in head or body
+```javascript 1.8
+const arr = [
+    {
+      script: 'https://cdn.bootcss.com/jquery/3.3.1/core.js',
+      beforeBody: true, // load before body tag closes
+      attrObject: {
+        'data-appid': 'APPID',
+        'data-redirecturi': 'REDIRECTURI',
+        'charset': 'utf-8'
+      } 
+    },// first script loaded
+    {
+      script: 'https://cdn.bootcss.com/jquery/3.3.1/core.js',
+      beforeBody: false,  // load in head tag
+      attrObject: {
+        'data-appid': 'APPID',
+        'data-redirecturi': 'REDIRECTURI',
+        'charset': 'utf-8'
+      } 
+    } // then second script loaded
+  ]
+this.$unBlockloadAllScriptsAndAttr(arr)
+    .then(() => {
+      // after all loaded, do your logic  
+    })
+    .catch(() => {
+      // after all loaded, do your logic
+    })
+```
+
 ## Usage
 ```javascript 1.6
 // main.js

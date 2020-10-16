@@ -6,7 +6,7 @@
 
 const LoadScript = {
   install: function (Vue) {
-    Vue.loadScript = Vue.prototype.$loadScript = function (src, attrObject) { // eslint-disable-line no-param-reassign
+    Vue.loadScript = Vue.prototype.$loadScript = function (src, attrObject, beforeBody) { // eslint-disable-line no-param-reassign
       return new Promise(function (resolve, reject) {
         if (document.querySelector('script[src="' + src + '"]')) {
           resolve()
@@ -28,8 +28,11 @@ const LoadScript = {
         el.addEventListener('load', resolve)
         el.addEventListener('error', reject)
         el.addEventListener('abort', reject)
-
-        document.head.appendChild(el)
+        if (beforeBody) {
+          document.body.appendChild(el)
+        } else {
+          document.head.appendChild(el)
+        }
       })
     }
 
@@ -52,7 +55,26 @@ const LoadScript = {
       })
     }
 
-    Vue.unloadScript = Vue.prototype.$unloadScript = function (src) { // eslint-disable-line no-param-reassign
+    Vue.unBlockloadAllScriptsAndAttr = Vue.prototype.$unBlockloadAllScriptsAndAttr =  function (scriptsArray) {
+      return new Promise(function (resolve, reject) {
+        const promise = scriptsArray.reduce((promise, current) => {
+          return promise.then(() => {
+            return Vue.loadScript(current.script, current.attrObject, current.beforeBody)
+          }).catch(() => {
+            return Vue.loadScript(current.script, current.attrObject, current.beforeBody)
+          })
+        }, Vue.loadScript(scriptsArray[0].script, scriptsArray[0].attrObject, scriptsArray[0].beforeBody))
+        promise
+          .then(() => {
+            resolve()
+          })
+          .catch(() => {
+            reject()
+          })
+      })
+    }
+
+    Vue.unloadScript = Vue.prototype.$unloadScript = function (src, beforeBody) { // eslint-disable-line no-param-reassign
       return new Promise(function (resolve, reject) {
         const el = document.querySelector('script[src="' + src + '"]')
 
@@ -61,13 +83,16 @@ const LoadScript = {
 
           return
         }
-
-        document.head.removeChild(el)
+        if (beforeBody) {
+          document.body.removeChild(el)
+        } else {
+          document.head.removeChild(el)
+        }
 
         resolve()
       })
     }
-    Vue.loadAfterUnloadScript = Vue.prototype.$loadAfterUnloadScript = function (src, attrObject) {
+    Vue.loadAfterUnloadScript = Vue.prototype.$loadAfterUnloadScript = function (src, attrObject, beforeBody) {
       return new Promise(function (resolve, reject) {
         const loadedScript = document.querySelector('script[src="' + src + '"]')
         if (loadedScript) {
@@ -89,7 +114,11 @@ const LoadScript = {
         el.addEventListener('error', reject)
         el.addEventListener('abort', reject)
 
-        document.head.appendChild(el)
+        if (beforeBody) {
+          document.body.appendChild(el)
+        } else {
+          document.head.appendChild(el)
+        }
       })
     }
   },
